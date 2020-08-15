@@ -2,6 +2,8 @@ import streamlit as st
 
 '# add color to your file list screenshots'
 
+'This app was created using [streamlit](https://www.streamlit.io/). The code of the page is visible [here](https://github.com/gmanchon/colorize-file-list)'
+
 '## usage'
 
 'paste the output of a **tree** command (`tree -L 2` for example) in the text field'
