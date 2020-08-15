@@ -58,6 +58,10 @@ for line in file_list.split('\n'):
             'hex_color' : hex_color
         })
 
+def replace_trailing_spaces(string):
+    lstripped = string.lstrip()
+    return '&nbsp;' * (len(string) - len(lstripped)) + lstripped
+
 # split lines between file and description
 files = []
 descs = []
@@ -67,7 +71,7 @@ for line in lines:
 
     if separator == -1:
 
-        line_file = line['line'].replace(' ', '&nbsp;')
+        line_file = replace_trailing_spaces(line['line'])
         line_desc = '&nbsp;'
 
         if line_file == '':
@@ -86,8 +90,8 @@ for line in lines:
             })
     else:
 
-        line_file = line['line'][:separator].replace(' ', '&nbsp;')
-        line_desc = line['line'][separator:].replace(' ', '&nbsp;')
+        line_file = replace_trailing_spaces(line['line'][:separator])
+        line_desc = line['line'][separator:]
 
         if line_file == '':
             line_file = '&nbsp;'
