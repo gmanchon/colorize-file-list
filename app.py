@@ -119,20 +119,43 @@ for line in lines:
     separator = line['line'].rfind('# ')
 
     if separator == -1:
-        files.append(line)
+
+        line_file = line['line']
+        line_desc = '&nbsp;'
+
+        if line_file == '':
+            line_file = '&nbsp;'
+
+        files.append({
+                'line' : line_file,
+                'class_color' : line['class_color'],
+                'hex_color' : line['hex_color']
+            })
+
         descs.append({
-                'line' : '&nbsp;',
+                'line' : line_desc,
                 'class_color' : 'none',
                 'hex_color' : ''
             })
     else:
+
+        line_file = line['line'][:separator].strip()
+        line_desc = line['line'][separator:].strip()
+
+        if line_file == '':
+            line_file = '&nbsp;'
+
+        if line_desc == '':
+            line_desc = '&nbsp;'
+
         files.append({
-                'line' : line['line'][:separator].strip(),
+                'line' : line_file,
                 'class_color' : line['class_color'],
                 'hex_color' : line['hex_color']
             })
+
         descs.append({
-                'line' : line['line'][separator:].strip(),
+                'line' : line_desc,
                 'class_color' : line['class_color'],
                 'hex_color' : line['hex_color']
             })
