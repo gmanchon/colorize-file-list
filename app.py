@@ -1,22 +1,24 @@
 import streamlit as st
 
-'# add color to your file list screenshots'
+'# colorize your file lists'
 
-'This app was created using [streamlit](https://www.streamlit.io/). The code of the page is visible [here](https://github.com/gmanchon/colorize-file-list)'
+'this app was created using [streamlit](https://www.streamlit.io/). The code is visible [here](https://github.com/gmanchon/colorize-file-list)'
 
 '## usage'
 
-'paste the output of a **tree** command (`tree -L 2` for example) in the text field'
+'1 . paste the output of a **tree** command (`tree -L 2` for example)'
 
-'add a comment and a color code to the end of the lines you wish to customize'
+'2 . add a comment and a color code to the end of the lines you wish to customize'
 
 COLORS = [':gray', ':pink', ':teal']
 
 f"color codes include {', '.join(f'`{color}`' for color in COLORS)}, or an hex code such as `#ff0071`"
 
-'## paste and edit a file list'
+'3 . take a screenshot! 📸'
 
-file_list = st.text_area('paste a file list, add comments and color codes', '''\
+'## customize file list'
+
+file_list = st.text_area('paste file list, add comments and color codes', '''\
 .                                                                           :gray
 ├── .git                            # git                                   :gray
 ├── .gitignore                      # git                                   :gray
