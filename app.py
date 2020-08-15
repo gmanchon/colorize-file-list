@@ -27,60 +27,6 @@ file_list = st.text_area('paste a file list, add comments and color codes', '''\
 └── setup.sh                        # link between Heroku and Streamlit     :pink
 ''', height=300)
 
-CONTENT = [{
-        'file' :  '.',
-        'desc' :  '&nbsp;',
-        'color' : 'gray'
-    },
-    {
-        'file' :  '├── .git</span>',
-        'desc' :  '# git',
-        'color' : 'gray'
-    },
-    {
-        'file' :  '├── .gitignore</span>',
-        'desc' :  '# git',
-        'color' : 'gray'
-    },
-    {
-        'file' :  '├── Procfile',
-        'desc' :  '# Heroku',
-        'color' : 'pink'
-    },
-    {
-        'file' :  '├── README.md',
-        'desc' :  '# GitHub',
-        'color' : 'gray'
-    },
-    {
-        'file' :  '├── __pycache__',
-        'desc' :  '# python cache',
-        'color' : 'gray'
-    },
-    {
-        'file' :  '├── app.py',
-        'desc' :  '# app',
-        'color' : 'black'
-    },
-    {
-        'file' :  '├── requirements.txt',
-        'desc' :  '# python package',
-        'color' : 'teal'
-    },
-    {
-        'file' :  '├── setup.py',
-        'desc' :  '# python package',
-        'color' : 'teal'
-    },
-    {
-        'file' :  '└── setup.sh',
-        'desc' :  '# link between Heroku and Streamlit',
-        'color' : 'pink'
-    }]
-
-CONTENT_FILE = ''.join([f'''<li><span class="{content['color']}">{content['file']}</span></li>''' for content in CONTENT])
-CONTENT_DESC = ''.join([f'''<li><span class="{content['color']}">{content['desc']}</span></li>''' for content in CONTENT])
-
 HTML = f'''
 <style>
 
@@ -115,6 +61,8 @@ li {{
     margin-left: 100px;
 }}
 
+/* custom colors */
+
 .gray {{
     color: #ccc;
 }}
@@ -128,24 +76,13 @@ li {{
 }}
 
 </style>
-<div class="file-list">
-    <div class="file-col">
-        <ul>
-            {CONTENT_FILE}
-        </ul>
-    </div>
-    <div class="desc-col">
-        <ul>
-            {CONTENT_DESC}
-        </ul>
-    </div>
-</div>
 '''
 
 st.write(HTML, unsafe_allow_html=True)
 
-'## bask in admiration to the result'
+'## bask in admiration at the result'
 
+# retrieve color for each line
 lines = []
 
 for line in file_list.split('\n'):
@@ -170,7 +107,7 @@ for line in file_list.split('\n'):
             'hex_color' : hex_color
         })
 
-# split file and description
+# split lines between file and description
 files = []
 descs = []
 
@@ -196,6 +133,7 @@ for line in lines:
                 'hex_color' : line['hex_color']
             })
 
+# render lines
 content_file = ''.join([f'''<li><span class="{line['class_color']}" style="color: {line['hex_color']}">{line['line']}</span></li>''' for line in files])
 content_desc = ''.join([f'''<li><span class="{line['class_color']}" style="color: {line['hex_color']}">{line['line']}</span></li>''' for line in descs])
 
