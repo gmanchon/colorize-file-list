@@ -31,59 +31,6 @@ file_list = st.text_area('paste file list, add comments and color codes', '''\
 └── setup.sh                        # link between Heroku and Streamlit     :pink
 ''', height=300)
 
-HTML = f'''
-<style>
-
-/* input */
-
-.Widget.stTextArea {{
-    width: 1000px !important;
-}}
-
-textarea {{
-    font-family: monaco !important;
-    font-size: 24px;
-    box-sizing: border-box;
-}}
-
-/* output */
-
-.file-list {{
-    display: flex;
-    width: 1000px;
-}}
-.file-list li {{
-    font-family: monaco;
-    font-size: 24px;
-}}
-
-li {{
-    list-style: none;
-}}
-
-.desc-col {{
-    margin-left: 100px;
-}}
-
-/* custom colors */
-
-.gray {{
-    color: #ccc;
-}}
-
-.pink {{
-    color: #ff0071;
-}}
-
-.teal {{
-    color: #017979;
-}}
-
-</style>
-'''
-
-st.write(HTML, unsafe_allow_html=True)
-
 '## bask in admiration at the result'
 
 # retrieve color for each line
@@ -160,11 +107,62 @@ for line in lines:
                 'hex_color' : line['hex_color']
             })
 
-# render lines
+# build content columns
 content_file = ''.join([f'''<li><span class="{line['class_color']}" style="color: {line['hex_color']}">{line['line']}</span></li>''' for line in files])
 content_desc = ''.join([f'''<li><span class="{line['class_color']}" style="color: {line['hex_color']}">{line['line']}</span></li>''' for line in descs])
 
+# create css
+CSS = f'''
+/* input */
+
+.Widget.stTextArea {{
+    width: 1000px !important;
+}}
+
+textarea {{
+    font-family: monaco !important;
+    font-size: 24px;
+    box-sizing: border-box;
+}}
+
+/* output */
+
+.file-list {{
+    display: flex;
+    width: 1000px;
+}}
+.file-list li {{
+    font-family: monaco;
+    font-size: 24px;
+}}
+
+li {{
+    list-style: none;
+}}
+
+.desc-col {{
+    margin-left: 100px;
+}}
+
+/* custom colors */
+
+.gray {{
+    color: #ccc;
+}}
+
+.pink {{
+    color: #ff0071;
+}}
+
+.teal {{
+    color: #017979;
+}}
+'''
+
+# build html
 html_content = f'''
+<style>
+{CSS}
 </style>
 <div class="file-list">
     <div class="file-col">
