@@ -135,6 +135,9 @@ textarea {{
     display: flex;
     width: 1000px;
 }}
+.file-list .file-col {{
+    width: 350px;
+}}
 .file-list li {{
     font-family: monaco;
     font-size: 24px;
@@ -145,7 +148,7 @@ li {{
 }}
 
 .desc-col {{
-    margin-left: 100px;
+    margin-left: 50px;
 }}
 
 /* custom colors */
