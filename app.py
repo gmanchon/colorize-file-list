@@ -67,7 +67,7 @@ for line in lines:
 
     if separator == -1:
 
-        line_file = line['line']
+        line_file = line['line'].replace(' ', '&nbsp;')
         line_desc = '&nbsp;'
 
         if line_file == '':
@@ -86,8 +86,8 @@ for line in lines:
             })
     else:
 
-        line_file = line['line'][:separator].strip()
-        line_desc = line['line'][separator:].strip()
+        line_file = line['line'][:separator].replace(' ', '&nbsp;')
+        line_desc = line['line'][separator:].replace(' ', '&nbsp;')
 
         if line_file == '':
             line_file = '&nbsp;'
